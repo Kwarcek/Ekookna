@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Zaproponuj przystanek | Ekookna{% endblock %}
 
 {% block body %}
 <style>
@@ -8,15 +8,28 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container">
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a href="{{ 'C:/laragon/www/ekookna/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-            <li>Your template at <code><a href="{{ 'C:/laragon/www/ekookna/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-        </ul>
+<div class="container d-flex justify-content-center mt-5">
+    <div class="row">
+            <h1>Zaproponuj przystanek</h1>
     </div>
-</div>
+</div>    
+
+<div class="container d-flex justify-content-center mt-5">
+    <div class="row">
+        {% for message in app.flashes('message') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+</div>    
+
+<div class="container d-flex justify-content-center mt-4">
+    <div class="row"> 
+        {{ form_start(bus_station_form, { action:path('home.create') }) }}
+            {{ form(bus_station_form) }}
+        {{ form_end(bus_station_form) }}
+    </div>
+</div>    
+
 {% endblock %}

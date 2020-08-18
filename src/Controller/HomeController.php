@@ -59,7 +59,7 @@ class HomeController extends AbstractController
                     $imageName = $fileUploader->upload($image);
 
                     $imageEntity->setName($imageName);
-                    $imageEntity->setBusStation($busStation);
+                    $imageEntity->setBusStationId($busStation);
 
                     $entityManager->persist($imageEntity);
                     $entityManager->flush();

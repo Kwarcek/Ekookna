@@ -24,8 +24,9 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BusStation", inversedBy="image")
+     * @ORM\JoinColumn(name="bus_station_id", referencedColumnName="id")
      */
-    private $busStation;
+    private $busStationId;
 
     public function getId(): ?int
     {
@@ -44,14 +45,14 @@ class Image
         return $this;
     }
 
-    public function getBusStation(): ?string
+    public function getBusStationId()
     {
-        return $this->busStation;
+        return $this->busStationId;
     }
 
-    public function setBusStation($busStation)
+    public function setBusStationId($busStationId)
     {
-        $this->busStation = $busStation;
+        $this->busStationId = $busStationId;
 
         return $this;
     }

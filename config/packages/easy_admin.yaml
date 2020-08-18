@@ -4,3 +4,11 @@
 #        - App\Entity\Product
 #        - App\Entity\Category
 #        - App\Entity\User
+
+easy_admin:
+    site_name: 'Ekookna'
+    entities:
+        BusStations:
+            class: App\Entity\BusStation
+        Images:
+            class: App\Entity\Image

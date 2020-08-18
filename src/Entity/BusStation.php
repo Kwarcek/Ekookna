@@ -28,6 +28,7 @@ class BusStation
     private $description;
 
     /**
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation")
      */
     private $image;
@@ -45,6 +46,7 @@ class BusStation
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int

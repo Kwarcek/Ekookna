@@ -32,9 +32,6 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Ekookna');
-        yield MenuItem::linkToCrud('Busstations', 'fa fa-bus', BusStation::class);
-        yield MenuItem::linkToCrud('Images', 'fa fa-images', Image::class);
         yield MenuItem::linkToLogout('Logout', 'fas fa-sign-out-alt');
     }
 }

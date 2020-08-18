@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
@@ -23,10 +24,14 @@ class Image
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\BusStation", inversedBy="image")
-     * @ORM\JoinColumn(name="bus_station_id", referencedColumnName="id")
+     * @Vich\UploadableField(mapping="name", fileNameProperty="name")
      */
-    private $busStationId;
+    private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\BusStation", inversedBy="image")
+     */
+    private $busStation;
 
     public function getId(): ?int
     {
@@ -45,14 +50,26 @@ class Image
         return $this;
     }
 
-    public function getBusStationId()
+    public function getBusStationId(): ?BusStation
     {
-        return $this->busStationId;
+        return $this->busStation;
     }
 
-    public function setBusStationId($busStationId)
+    public function setBusStationId(?BusStation $busStation): self
     {
-        $this->busStationId = $busStationId;
+        $this->busStation = $busStation;
+
+        return $this;
+    }
+
+    public function getBusStation(): ?BusStation
+    {
+        return $this->busStation;
+    }
+
+    public function setBusStation(?BusStation $busStation): self
+    {
+        $this->busStation = $busStation;
 
         return $this;
     }

@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\BusStationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BusStationRepository::class)
+ * @Vich\Uploadable()
  */
 class BusStation
 {
@@ -28,7 +32,6 @@ class BusStation
     private $description;
 
     /**
-     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation")
      */
     private $image;
@@ -46,7 +49,7 @@ class BusStation
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->image = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +101,37 @@ class BusStation
     public function setReaded(bool $readed): self
     {
         $this->readed = $readed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image[] = $image;
+            $image->setBusStation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->image->contains($image)) {
+            $this->image->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getBusStation() === $this) {
+                $image->setBusStation(null);
+            }
+        }
 
         return $this;
     }

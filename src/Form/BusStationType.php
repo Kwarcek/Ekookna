@@ -39,7 +39,7 @@ class BusStationType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
-                'label' => 'Zdjęcie',
+                'label' => 'Zdjęcie (dozwolone formaty: .jpg, .jpeg, .bmp, .png)',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,

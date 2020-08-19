@@ -58,8 +58,8 @@ class HomeController extends AbstractController
                 foreach ($images as $image) {
                     $imageName = $fileUploader->upload($image);
 
-                    $imageEntity->setName($imageName);
-                    $imageEntity->setBusStationId($busStation);
+                    $imageEntity->setImage($imageName);
+                    $imageEntity->setBusStation($busStation);
 
                     $entityManager->persist($imageEntity);
                     $entityManager->flush();

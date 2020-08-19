@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
@@ -23,16 +23,15 @@ class Image
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $image;
 
     /**
-     * @Vich\UploadableField(mapping="name", fileNameProperty="name")
+     * @Vich\UploadableField(mapping="image", fileNameProperty="image")
      */
-    private $file;
+    private $imageFile;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BusStation", inversedBy="image")
-     * @ORM\JoinColumn(name="bus_station_id", referencedColumnName="id", nullable=false)
      */
     private $busStation;
 
@@ -41,26 +40,14 @@ class Image
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getImage(): ?string
     {
-        return $this->name;
+        return $this->image;
     }
 
-    public function setName(string $name): self
+    public function setImage(string $image): self
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getBusStationId(): ?BusStation
-    {
-        return $this->busStation;
-    }
-
-    public function setBusStationId(?BusStation $busStation): self
-    {
-        $this->busStation = $busStation;
+        $this->image = $image;
 
         return $this;
     }
@@ -76,4 +63,17 @@ class Image
 
         return $this;
     }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+        
+        return $this;
+    }
+
 }

@@ -35,15 +35,9 @@ class BusStation
     private $description;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation", cascade={"persist", "remove"})  
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation", cascade={"persist"})  
      */
     private $image;
-
-    /** 
-     * @Assert\NotBlank
-    */
-    private $file;
     
     /**
      * @ORM\Column(type="datetime")
@@ -51,14 +45,19 @@ class BusStation
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false}, nullable=true)
      */
-    private $readed = false;
+    private $readed;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->image = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        $this->getImage();
     }
 
     public function getId(): ?int
@@ -117,7 +116,7 @@ class BusStation
     /**
      * @return Collection|Image[]
      */
-    public function getImage()
+    public function getImage(): Collection
     {
         return $this->image;
     }
@@ -141,6 +140,18 @@ class BusStation
                 $image->setBusStation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatorId(): ?int
+    {
+        return $this->creatorId;
+    }
+
+    public function setCreatorId(int $creatorId): self
+    {
+        $this->creatorId = $creatorId;
 
         return $this;
     }

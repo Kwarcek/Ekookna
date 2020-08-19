@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel administratora{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper pb-5">
+  <div class="d-flex justify-content-between mb-5">
+    <h1>Propozycja przystanku</h1>
+    <a href="{{ path('admin.index')}}" class="btn btn-success d-flex justify-content-center align-items-center">Powrót</a>
+    </div>
+    {% for data in datas %}
+    <div>
+      <label>ID Propozycji</label>
+      <input type="text" id="id" class="form-control mb-3" value="{{data.id}}" readonly />
+    </div>
+    <div>
+      <label>Adres</label>
+      <input type="text" id="address" class="form-control mb-3" value="{{data.address}}" readonly>
+    </div>
+    <div>
+      <label>Opis</label>
+      <textarea class="form-control mb-3" id="description" readonly>{{data.description}}</textarea>
+    </div>  
+    <div>
+    {% for image in data.image %}
+      {% if image.image is defined %}
+        <img src="{{ asset('uploads/images/' ~ image.image) }}" />
+      {% endif %}
+    {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

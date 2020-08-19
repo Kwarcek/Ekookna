@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
+ * @Vich\Uploadable
  */
 class Image
 {
@@ -30,6 +32,7 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BusStation", inversedBy="image")
+     * @ORM\JoinColumn(name="bus_station_id", referencedColumnName="id", nullable=false)
      */
     private $busStation;
 

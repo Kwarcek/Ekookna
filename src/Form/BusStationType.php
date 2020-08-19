@@ -22,7 +22,8 @@ class BusStationType extends AbstractType
     {
         $builder
             ->add('address', TextType::class, [
-                'label' => 'Adres przystanku',
+                'label' => 'Adres przystanku*',
+                'required' => true,
                 'attr' => [
                     'placeholder' => 'Proponowany adres',
                     'class' => 'form-control',

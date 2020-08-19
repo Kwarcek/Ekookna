@@ -27,7 +27,8 @@ class BusStationCrudController extends AbstractCrudController
             BooleanField::new('readed')->hideOnForm(),
             TextField::new('address'),
             TextAreaField::new('description'),
-            //ImageField::new('name')->setFormType(VichImageType::class),
+            ImageField::new('image')->setFormType(VichImageType::class),
+            ImageField::new('image')->setBasePath('/uploads/images'),
         ];
     }
 }

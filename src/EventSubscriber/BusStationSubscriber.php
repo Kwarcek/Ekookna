@@ -2,9 +2,9 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\BusStation;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use App\Entity\BusStation;
 
 class BusStationSubscriber implements EventSubscriberInterface
 {
@@ -17,6 +17,8 @@ class BusStationSubscriber implements EventSubscriberInterface
 
     public function setReaded(BeforeEntityUpdatedEvent $event)
     {
-        var_dump($event);
+        $entity = $event->getEntityInstance();
+
+        $entity->setReaded(true);
     }
 }

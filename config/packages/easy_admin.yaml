@@ -3,3 +3,5 @@ easy_admin:
     entities:
         BusStations:
             class: App\Entity\BusStation
+        Images:
+            class: App\Entity\Image

@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Entity\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BusStationRepository::class)
@@ -23,6 +25,7 @@ class BusStation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $address;
 
@@ -32,10 +35,16 @@ class BusStation
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation")
+     * @Assert\NotBlank()
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation", cascade={"persist", "remove"})  
      */
     private $image;
 
+    /** 
+     * @Assert\NotBlank
+    */
+    private $file;
+    
     /**
      * @ORM\Column(type="datetime")
      */
@@ -108,7 +117,7 @@ class BusStation
     /**
      * @return Collection|Image[]
      */
-    public function getImage(): Collection
+    public function getImage()
     {
         return $this->image;
     }

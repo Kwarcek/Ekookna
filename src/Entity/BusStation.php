@@ -24,6 +24,11 @@ class BusStation
     private $id;
 
     /**
+     * @ORM\Column(type="boolean", options={"default": false}, nullable=true)
+     */
+    private $readed;    
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
@@ -35,6 +40,11 @@ class BusStation
     private $description;
 
     /**
+     * @ORM\Column(type="integer", options={"default" : "1"})
+     */
+    private $owner = 1;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="busStation", cascade={"persist"})  
      */
     private $image;
@@ -44,10 +54,6 @@ class BusStation
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": false}, nullable=true)
-     */
-    private $readed;
 
     public function __construct()
     {

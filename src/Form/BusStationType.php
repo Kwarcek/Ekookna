@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -57,7 +58,7 @@ class BusStationType extends AbstractType
                     'accept' => '.jpg, .jpeg, .png, .bmp',
                 ],
  
-            ])            
+            ])
             ->add('Submit', SubmitType::class, [
                 'label' => 'Wyślij',
                 'attr' => [

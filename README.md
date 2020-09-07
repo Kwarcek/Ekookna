@@ -12,3 +12,6 @@ PHP >= 7.4.1
 2. Instalacja zależności - terminal "composer install"
 2. Stworzenie bazy danych - terminal "php bin/console doctrine:database:create"
 3. Migracja tabeli danych - terminal "php bin/console doctrine:migrations:migrate"
+4. Tworzenie admina - terminal "php bin/console doctrine:fixtures:load"
+Login: example@gmail.com
+Hasło: ekookna

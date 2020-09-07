@@ -53,11 +53,18 @@ class BusStationRepository extends ServiceEntityRepository
 
     public function updateReaded($id)
     {
-        $connection = $this->getEntityManager()->getConnection();
-        $sql = "UPDATE bus_station SET readed=true WHERE id=:id";
-        $statement = $connection->prepare($sql);
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT readed FROM bus_station WHERE id=:id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $data = $stmt->fetch();
 
-        $statement->execute(['id' => $id]);
+        if($data['readed'] == 0) {
+            $sql = "UPDATE bus_station SET readed=true WHERE id=:id";
+            $stmt = $conn->prepare($sql);
+    
+            $stmt->execute(['id' => $id]);
+        }
     }
 
     /*

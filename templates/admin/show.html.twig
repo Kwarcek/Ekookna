@@ -29,7 +29,7 @@
     <div>
     {% for image in data.image %}
       {% if image.image is defined %}
-        <img src="{{ asset('uploads/images/' ~ image.image) }}" />
+        <img class="w-100" src="{{ asset('uploads/images/' ~ image.image) }}" />
       {% endif %}
     {% endfor %}
     </div>

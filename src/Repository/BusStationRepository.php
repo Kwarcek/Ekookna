@@ -59,6 +59,10 @@ class BusStationRepository extends ServiceEntityRepository
         $stmt->execute(['id' => $id]);
         $data = $stmt->fetch();
 
+        if($data == FALSE) {
+            return 0;
+        }
+
         if($data['readed'] == 0) {
             $sql = "UPDATE bus_station SET readed=true WHERE id=:id";
             $stmt = $conn->prepare($sql);
